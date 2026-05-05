@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Khiluu ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffd6e8, #fff0f6);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #ff3b7a;
+      text-align: center;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.78);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(255, 105, 180, 0.25);
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #d63384;
+    }
+
+    p {
+      color: #c2185b;
+      line-height: 1.7;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 350px;
+      height: 430px;
+      object-fit: cover;
+      border-radius: 25px;
+      border: 5px solid white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 20px auto;
+      display: block;
+    }
+
+    .btn {
+      background: #ff4d88;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #e63973;
+      transform: scale(1.05);
+    }
+
+    #message, #foreverAnswer, #gameMessage {
+      margin-top: 15px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      min-height: 40px;
+      color: #c2185b;
+    }
+
+    .music-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    audio {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .love-buttons {
+      position: relative;
+      height: 160px;
+      margin-top: 15px;
+    }
+
+    #yesBtn, #noBtn {
+      position: absolute;
+    }
+
+    #yesBtn {
+      left: 30%;
+      top: 50px;
+    }
+
+    #noBtn {
+      left: 55%;
+      top: 50px;
+    }
+
+    .game-box {
+      padding: 20px;
+    }
+
+    .hearts-game {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .heart-btn {
+      width: 70px;
+      height: 70px;
+      border: none;
+      border-radius: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(255,105,180,0.25);
+      transition: 0.25s;
+    }
+
+    .heart-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .heart {
+      position: fixed;
+      color: rgba(255, 77, 136, 0.45);
+      animation: float 7s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .hearts-game {
+        grid-template-columns: repeat(3, 70px);
+      }
+      #yesBtn { left: 18%; }
+      #noBtn { left: 58%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="card">
+      <h1>For My Khiluu ❤️</h1>
+      <p>You are my favorite person, my peace, my smile, and the prettiest part of my life ✨</p>
+      <!-- Replace this image path with your uploaded image -->
+      <img src="myimg.jpg" alt="Us" class="hero-img" />
+      <button class="btn" onclick="showLove()">Why I Love You 💖</button>
+      <div id="message"></div>
+    </div>
+
+    <div class="card music-box">
+      <h2>Our Romantic Song 🎶</h2>
+      <p>Play this while reading, my love 💕</p>
+      <!-- Replace with your favorite romantic mp3 -->
+      <audio controls autoplay loop>
+        <source src="Mane Tu Mali Gai - Official Audio  Jigardan Gadhavi - Jigrra.mp3" type="audio/mpeg" start="53">
+      </audio>
+    </div>
+
+    <div class="card">
+      <h2>Will You Stay Forever? 🥺❤️</h2>
+      <p>Choose carefully, baby 😚</p>
+      <div class="love-buttons">
+        <button class="btn" id="yesBtn" onclick="yesForever()">Yes 💍</button>
+        <button class="btn" id="noBtn" onmouseover="moveNo()">No 😝</button>
+      </div>
+      <div id="foreverAnswer"></div>
+    </div>
+
+    <div class="card game-box">
+      <h2>Mini Love Game 💘</h2>
+      <p>Find the special heart made just for Khiluu 💖</p>
+      <div class="hearts-game" id="gameBoard"></div>
+      <div id="gameMessage"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const loveMessages = [
+      "Khiluu, your smile is my favorite place ❤️",
+      "You make my worst days feel soft and safe 💕",
+      "Loving you is the easiest thing I’ve ever done 🌸",
+      "You are my peace, my happiness, my forever 💖",
+      "Every moment with you feels magical ✨"
+    ];
+
+    function showLove() {
+      const msg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+      document.getElementById("message").innerText = msg;
+    }
+
+    function yesForever() {
+      document.getElementById("foreverAnswer").innerText =
+        "YAYYY 💍❤️ You are officially my forever, Khiluu 🥹💕";
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.floor(Math.random() * 65);
+      const y = Math.floor(Math.random() * 90);
+      btn.style.left = x + "%";
+      btn.style.top = y + "px";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+
+    const gameBoard = document.getElementById("gameBoard");
+    const gameMessage = document.getElementById("gameMessage");
+    let specialHeart = Math.floor(Math.random() * 12);
+
+    function loadGame() {
+      gameBoard.innerHTML = "";
+      for (let i = 0; i < 12; i++) {
+        const btn = document.createElement("button");
+        btn.classList.add("heart-btn");
+        btn.innerHTML = "💗";
+        btn.onclick = () => checkHeart(i);
+        gameBoard.appendChild(btn);
+      }
+    }
+
+    function checkHeart(index) {
+      if (index === specialHeart) {
+        gameMessage.innerText = "Yay Khiluu found the special heart 💖 You win my heart forever ❤️";
+        specialHeart = Math.floor(Math.random() * 12);
+        setTimeout(loadGame, 1200);
+      } else {
+        gameMessage.innerText = "Oops baby, try again 😚";
+      }
+    }
+
+    loadGame();
+  </script>
+
+</body>
+</html>
