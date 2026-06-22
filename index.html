@@ -380,9 +380,9 @@
     </div>
 
     <div class="card game-box">
-      <h2>Love Countdown ⏳❤️</h2>
-      <p>Days I've loved you...</p>
-      <button class="btn" onclick="startCountdown()">See the Count 📅</button>
+      <h2>Wedding Day Counter 💍⏳</h2>
+      <p>Our special day is coming...</p>
+      <button class="btn" onclick="startCountdown()">See the Countdown 📅</button>
       <div class="timer-display" id="countdownDisplay"></div>
     </div>
 
@@ -390,7 +390,7 @@
 
   <script>
     const loveMessages = [
-      "Khiluu, your smile is my favorite place ❤️",
+      "Khushi, your smile is my favorite place ❤️",
       "You make my worst days feel soft and safe 💕",
       "Loving you is the easiest thing I’ve ever done 🌸",
       "You are my peace, my happiness, my forever 💖",
@@ -409,15 +409,21 @@
     function yesForever() {
       createConfetti();
       document.getElementById("foreverAnswer").innerHTML =
-        "<p style='font-size: 1.3rem; animation: heartbeat 1s ease-in-out infinite;'>YAYYY 💍❤️ You are officially my forever, Khiluu 🥹💕</p><p style='margin-top: 10px; font-size: 1.1rem;'>I promise to love you with all my heart, forever and always ✨💕</p>";
+        "<p style='font-size: 1.3rem; animation: heartbeat 1s ease-in-out infinite;'>YAYYY 💍❤️ You are officially my forever, Khushi 🥹💕</p><p style='margin-top: 10px; font-size: 1.1rem;'>I promise to love you with all my heart, forever and always ✨💕</p>";
     }
 
+    let yesScale = 1;
     function moveNo() {
       const btn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
       const x = Math.floor(Math.random() * 65);
       const y = Math.floor(Math.random() * 90);
       btn.style.left = x + "%";
       btn.style.top = y + "px";
+      
+      // Increase Yes button size
+      yesScale += 0.15;
+      yesBtn.style.transform = `scale(${yesScale})`;
     }
 
     function createHeart() {
@@ -451,7 +457,7 @@
 
     function checkHeart(index) {
       if (index === specialHeart) {
-        gameMessage.innerText = "Yay Khiluu found the special heart 💖 You win my heart forever ❤️";
+        gameMessage.innerText = "Yay Khushi found the special heart 💖 You win my heart forever ❤️";
         createConfetti();
         specialHeart = Math.floor(Math.random() * 12);
         setTimeout(loadGame, 1200);
@@ -466,17 +472,38 @@
 
     // Love Letter Generator
     const loveLetters = [
-      "My Dearest Khiluu,\n\nEvery day with you feels like a dream. You are my sunshine, my laughter, and my reason to smile. I love you more than words can express. You make life beautiful just by being in it.\n\nForever yours,\nYour Love ❤️",
-      "To My Beautiful Khiluu,\n\nYou are the most amazing person I know. Your kindness, your smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
-      "My Sweet Khiluu,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every kiss, every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
-      "Dearest Khiluu,\n\nYou are my favorite person in this whole world. The way you love me, the way you care, the way you just exist makes me want to be a better person. Thank you for being my everything.\n\nLove you forever,\nYour Heart 💖"
+      "My Dearest Khushi,\n\nEvery day with you feels like a dream. You are my sunshine, my laughter, and my reason to smile. I love you more than words can express. You make life beautiful just by being in it.\n\nForever yours,\nYour Love ❤️",
+      "To My Beautiful Khushi,\n\nYou are the most amazing person I know. Your kindness, your smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
+      "My Sweet Khushi,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every kiss, every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
+      "Dearest Khushi,\n\nYou are my favorite person in this whole world. The way you love me, the way you care, the way you just exist makes me want to be a better person. Thank you for being my everything.\n\nLove you forever,\nYour Heart 💖"
     ];
 
     function generateLetter() {
       const letterBox = document.getElementById("letterBox");
       const letter = loveLetters[Math.floor(Math.random() * loveLetters.length)];
-      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #c2185b; line-height: 1.8;'>${letter}</p>`;
+      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #c2185b; line-height: 1.8;' id='typingLetter'></p>`;
+      typeLetterEffect(letter);
       createConfetti();
+    }
+    
+    function typeLetterEffect(text) {
+      const typingLetter = document.getElementById('typingLetter');
+      let index = 0;
+      typingLetter.innerHTML = '';
+      
+      function type() {
+        if (index < text.length) {
+          const char = text[index];
+          if (char === '\n') {
+            typingLetter.innerHTML += '<br>';
+          } else {
+            typingLetter.innerHTML += char;
+          }
+          index++;
+          setTimeout(type, 30);
+        }
+      }
+      type();
     }
 
     // Memory Matching Game
@@ -610,14 +637,23 @@
       createConfetti();
     }
 
-    // Love Countdown
+    // Wedding Day Counter
     function startCountdown() {
-      // You can change this date to when you started loving her
-      const startDate = new Date("2023-01-01");
+      const weddingDate = new Date('2026-12-09T00:00:00+05:30');
+      const startDate = new Date('2026-07-05T00:00:00+05:30');
       const today = new Date();
-      const daysLoved = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      
+      const daysLeft = Math.ceil((weddingDate - today) / (1000 * 60 * 60 * 24));
+      const totalDays = Math.ceil((weddingDate - startDate) / (1000 * 60 * 60 * 24));
+      const daysElapsed = totalDays - daysLeft;
+      const progressPercent = Math.min((daysElapsed / totalDays) * 100, 100);
+      
       const countdownDisplay = document.getElementById("countdownDisplay");
-      countdownDisplay.innerHTML = `${daysLoved} Days of Love ❤️<br><small style='font-size: 0.8rem;'>And counting... forever with you 💕</small>`;
+      if (daysLeft > 0) {
+        countdownDisplay.innerHTML = `${daysLeft} Days Until Our Wedding! 💍✨<br><small style='font-size: 0.9rem;'>Progress: ${Math.round(progressPercent)}% | ${daysElapsed} days of love so far 💕</small>`;
+      } else {
+        countdownDisplay.innerHTML = `🎉 We're Getting Married Today! 💍✨ 🎉<br><small style='font-size: 0.9rem;'>Forever starts now, my love 💕</small>`;
+      }
     }
 
     // Confetti Effect
