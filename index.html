@@ -13,7 +13,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #ffd6e8, #fff0f6);
+      background: linear-gradient(135deg, #ffd6e8 0%, #fff0f6 50%, #ffe0ec 100%);
       min-height: 100vh;
       overflow-x: hidden;
       color: #ff3b7a;
@@ -37,21 +37,46 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.88);
       border-radius: 25px;
       padding: 30px;
       box-shadow: 0 10px 35px rgba(255, 105, 180, 0.25);
       margin-bottom: 25px;
+      border: 2px solid rgba(255, 105, 180, 0.15);
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
       font-size: 2.8rem;
       margin-bottom: 10px;
+      background: linear-gradient(135deg, #ff3b7a, #ff69b4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      50% { transform: scale(1); }
     }
 
     h2 {
       margin-bottom: 15px;
       color: #d63384;
+      font-size: 1.5rem;
     }
 
     p {
@@ -69,10 +94,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       margin: 20px auto;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-img:hover {
+      transform: scale(1.05) rotate(1deg);
     }
 
     .btn {
-      background: #ff4d88;
+      background: linear-gradient(135deg, #ff4d88, #ff69b4);
       color: white;
       border: none;
       padding: 14px 24px;
@@ -81,19 +111,32 @@
       font-size: 1rem;
       margin: 10px;
       transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 77, 136, 0.3);
+      font-weight: 600;
     }
 
     .btn:hover {
-      background: #e63973;
-      transform: scale(1.05);
+      background: linear-gradient(135deg, #e63973, #ff1493);
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(255, 77, 136, 0.5);
     }
 
-    #message, #foreverAnswer, #gameMessage {
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    #message, #foreverAnswer, #gameMessage, #letterMessage, #quizMessage, #memoryMessage {
       margin-top: 15px;
       font-size: 1.15rem;
       font-weight: bold;
       min-height: 40px;
       color: #c2185b;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .music-box {
@@ -116,6 +159,7 @@
 
     #yesBtn, #noBtn {
       position: absolute;
+      transition: all 0.1s ease;
     }
 
     #yesBtn {
@@ -147,13 +191,15 @@
       border-radius: 20px;
       font-size: 2rem;
       cursor: pointer;
-      background: #fff;
+      background: linear-gradient(135deg, #fff, #ffe0ec);
       box-shadow: 0 5px 15px rgba(255,105,180,0.25);
       transition: 0.25s;
+      font-weight: bold;
     }
 
     .heart-btn:hover {
-      transform: scale(1.08);
+      transform: scale(1.12);
+      box-shadow: 0 8px 20px rgba(255,105,180,0.4);
     }
 
     .heart {
@@ -174,10 +220,96 @@
       }
     }
 
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .memory-card {
+      width: 80px;
+      height: 80px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #ff69b4, #ff4d88);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(255,105,180,0.3);
+    }
+
+    .memory-card:hover {
+      transform: scale(1.08);
+    }
+
+    .memory-card.flipped {
+      background: #fff;
+      color: #ff4d88;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    .quiz-btn {
+      width: 90%;
+      max-width: 300px;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      background: #fff;
+      color: #ff4d88;
+      cursor: pointer;
+      border: 2px solid #ff4d88;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .quiz-btn:hover {
+      background: #ff4d88;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .letter-box {
+      background: linear-gradient(135deg, #fff5f7, #fff);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 15px;
+      min-height: 150px;
+      border: 2px dashed #ff69b4;
+    }
+
+    .timer-display {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff4d88;
+      margin: 15px 0;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ff4d88;
+      pointer-events: none;
+      z-index: 999;
+    }
+
     @media (max-width: 768px) {
       h1 { font-size: 2.2rem; }
       .hearts-game {
         grid-template-columns: repeat(3, 70px);
+      }
+      .memory-grid {
+        grid-template-columns: repeat(2, 80px);
       }
       #yesBtn { left: 18%; }
       #noBtn { left: 58%; }
@@ -211,7 +343,7 @@
       <p>Choose carefully, baby 😚</p>
       <div class="love-buttons">
         <button class="btn" id="yesBtn" onclick="yesForever()">Yes 💍</button>
-        <button class="btn" id="noBtn" onmouseover="moveNo()">No 😝</button>
+        <button class="btn" id="noBtn" onclick="moveNo()" onmouseover="moveNo()">No 😝</button>
       </div>
       <div id="foreverAnswer"></div>
     </div>
@@ -223,6 +355,37 @@
       <div id="gameMessage"></div>
     </div>
 
+    <div class="card game-box">
+      <h2>Love Letter Generator 💌</h2>
+      <p>Let me write you a love letter...</p>
+      <button class="btn" onclick="generateLetter()">Generate Letter for You ✍️</button>
+      <div class="letter-box" id="letterBox"></div>
+      <div id="letterMessage"></div>
+    </div>
+
+    <div class="card game-box">
+      <h2>Memory Matching Game 🎮</h2>
+      <p>Match the hearts and find the hidden memories ❤️</p>
+      <button class="btn" onclick="startMemoryGame()">Start Game</button>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div id="memoryMessage"></div>
+    </div>
+
+    <div class="card game-box">
+      <h2>How Well Do I Know You? 🤔💕</h2>
+      <p>Take this quick personality quiz and find out our love score!</p>
+      <button class="btn" onclick="startQuiz()">Start Quiz 🎯</button>
+      <div id="quizContainer"></div>
+      <div id="quizMessage"></div>
+    </div>
+
+    <div class="card game-box">
+      <h2>Love Countdown ⏳❤️</h2>
+      <p>Days I've loved you...</p>
+      <button class="btn" onclick="startCountdown()">See the Count 📅</button>
+      <div class="timer-display" id="countdownDisplay"></div>
+    </div>
+
   </div>
 
   <script>
@@ -231,17 +394,22 @@
       "You make my worst days feel soft and safe 💕",
       "Loving you is the easiest thing I’ve ever done 🌸",
       "You are my peace, my happiness, my forever 💖",
-      "Every moment with you feels magical ✨"
+      "Every moment with you feels magical ✨",
+      "Your laugh is my favorite music 🎵",
+      "I fall in love with you every single day 💘",
+      "You're my favorite hello and hardest goodbye 🥺"
     ];
 
     function showLove() {
       const msg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
       document.getElementById("message").innerText = msg;
+      createConfetti();
     }
 
     function yesForever() {
-      document.getElementById("foreverAnswer").innerText =
-        "YAYYY 💍❤️ You are officially my forever, Khiluu 🥹💕";
+      createConfetti();
+      document.getElementById("foreverAnswer").innerHTML =
+        "<p style='font-size: 1.3rem; animation: heartbeat 1s ease-in-out infinite;'>YAYYY 💍❤️ You are officially my forever, Khiluu 🥹💕</p><p style='margin-top: 10px; font-size: 1.1rem;'>I promise to love you with all my heart, forever and always ✨💕</p>";
     }
 
     function moveNo() {
@@ -284,6 +452,7 @@
     function checkHeart(index) {
       if (index === specialHeart) {
         gameMessage.innerText = "Yay Khiluu found the special heart 💖 You win my heart forever ❤️";
+        createConfetti();
         specialHeart = Math.floor(Math.random() * 12);
         setTimeout(loadGame, 1200);
       } else {
@@ -292,6 +461,190 @@
     }
 
     loadGame();
+
+    // ===== NEW FEATURES =====
+
+    // Love Letter Generator
+    const loveLetters = [
+      "My Dearest Khiluu,\n\nEvery day with you feels like a dream. You are my sunshine, my laughter, and my reason to smile. I love you more than words can express. You make life beautiful just by being in it.\n\nForever yours,\nYour Love ❤️",
+      "To My Beautiful Khiluu,\n\nYou are the most amazing person I know. Your kindness, your smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
+      "My Sweet Khiluu,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every kiss, every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
+      "Dearest Khiluu,\n\nYou are my favorite person in this whole world. The way you love me, the way you care, the way you just exist makes me want to be a better person. Thank you for being my everything.\n\nLove you forever,\nYour Heart 💖"
+    ];
+
+    function generateLetter() {
+      const letterBox = document.getElementById("letterBox");
+      const letter = loveLetters[Math.floor(Math.random() * loveLetters.length)];
+      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #c2185b; line-height: 1.8;'>${letter}</p>`;
+      createConfetti();
+    }
+
+    // Memory Matching Game
+    const memoryPairs = ["❤️", "💕", "💖", "💗", "💘", "💝"];
+    let memoryCards = [];
+    let flipped = [];
+    let matched = 0;
+
+    function startMemoryGame() {
+      memoryCards = [];
+      flipped = [];
+      matched = 0;
+      const memoryGrid = document.getElementById("memoryGrid");
+      memoryGrid.innerHTML = "";
+      document.getElementById("memoryMessage").innerText = "";
+
+      // Create pairs
+      const gameCards = [...memoryPairs, ...memoryPairs];
+      for (let i = gameCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
+      }
+
+      gameCards.forEach((symbol, index) => {
+        const card = document.createElement("button");
+        card.className = "memory-card";
+        card.dataset.symbol = symbol;
+        card.dataset.index = index;
+        card.innerHTML = "?";
+        card.onclick = () => flipMemoryCard(card);
+        memoryCards.push(card);
+        memoryGrid.appendChild(card);
+      });
+    }
+
+    function flipMemoryCard(card) {
+      if (flipped.length < 2 && !card.classList.contains("flipped")) {
+        card.classList.add("flipped");
+        card.innerHTML = card.dataset.symbol;
+        flipped.push(card);
+
+        if (flipped.length === 2) {
+          setTimeout(() => checkMemoryMatch(), 500);
+        }
+      }
+    }
+
+    function checkMemoryMatch() {
+      const [card1, card2] = flipped;
+      if (card1.dataset.symbol === card2.dataset.symbol) {
+        matched++;
+        flipped = [];
+        if (matched === memoryPairs.length) {
+          document.getElementById("memoryMessage").innerText = "You matched all hearts! You know my love perfectly! 💕✨";
+          createConfetti();
+        }
+      } else {
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+        card1.innerHTML = "?";
+        card2.innerHTML = "?";
+        flipped = [];
+      }
+    }
+
+    // Love Quiz
+    const quizQuestions = [
+      {
+        question: "What's my favorite thing about you?",
+        options: ["Your smile", "Your kindness", "Your eyes", "Everything"],
+        correct: 3
+      },
+      {
+        question: "How many times a day do I think about you?",
+        options: ["A few", "Many times", "All the time", "Every second"],
+        correct: 3
+      },
+      {
+        question: "What do you mean to me?",
+        options: ["Someone special", "My person", "My forever", "Everything in my life"],
+        correct: 3
+      }
+    ];
+
+    let quizScore = 0;
+    let currentQuestion = 0;
+
+    function startQuiz() {
+      quizScore = 0;
+      currentQuestion = 0;
+      showQuizQuestion();
+    }
+
+    function showQuizQuestion() {
+      const container = document.getElementById("quizContainer");
+      if (currentQuestion < quizQuestions.length) {
+        const q = quizQuestions[currentQuestion];
+        let html = `<p style='font-size: 1.1rem; margin: 15px 0; color: #c2185b;'>${q.question}</p><div class='quiz-options'>`;
+        q.options.forEach((option, index) => {
+          html += `<button class='quiz-btn' onclick='answerQuiz(${index}, ${q.correct})'>${option}</button>`;
+        });
+        html += "</div>";
+        container.innerHTML = html;
+      } else {
+        endQuiz();
+      }
+    }
+
+    function answerQuiz(selected, correct) {
+      if (selected === correct) {
+        quizScore++;
+        document.getElementById("quizMessage").innerText = "Correct! 💕";
+      } else {
+        document.getElementById("quizMessage").innerText = "Close! The answer was that you mean everything to me 💖";
+      }
+      currentQuestion++;
+      setTimeout(showQuizQuestion, 1200);
+    }
+
+    function endQuiz() {
+      document.getElementById("quizContainer").innerHTML = "";
+      let scoreMessage = "";
+      if (quizScore === 3) {
+        scoreMessage = "Perfect Score! 💯❤️ You know exactly how much I love you!";
+      } else if (quizScore === 2) {
+        scoreMessage = "Great Job! 💕 You definitely know how special you are to me!";
+      } else {
+        scoreMessage = "Good effort! 💖 But know that you mean EVERYTHING to me!";
+      }
+      document.getElementById("quizMessage").innerHTML = `<p style='font-size: 1.2rem;'>${scoreMessage}</p><p>Love Score: ${quizScore}/3 🌟</p>`;
+      createConfetti();
+    }
+
+    // Love Countdown
+    function startCountdown() {
+      // You can change this date to when you started loving her
+      const startDate = new Date("2023-01-01");
+      const today = new Date();
+      const daysLoved = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      const countdownDisplay = document.getElementById("countdownDisplay");
+      countdownDisplay.innerHTML = `${daysLoved} Days of Love ❤️<br><small style='font-size: 0.8rem;'>And counting... forever with you 💕</small>`;
+    }
+
+    // Confetti Effect
+    function createConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = "-10px";
+        confetti.style.background = ["#ff4d88", "#ff69b4", "#ff1493", "#c2185b"][Math.floor(Math.random() * 4)];
+        confetti.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    // Confetti animation
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes fall {
+        to {
+          transform: translateY(${window.innerHeight + 10}px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 
 </body>
