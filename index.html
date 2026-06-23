@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For My Khushi ❤️</title>
+  <title>For My LOVE ❤️</title>
   <style>
     * {
       margin: 0;
@@ -261,19 +261,20 @@
         );
       background-position: 0 0;
       border-radius: 15px;
-      padding: 22px 20px 20px 30px;
+      padding: 0 20px 20px 30px;
       margin-top: 15px;
       min-height: 200px;
       border: 2px solid #d4a574;
     }
 
     .letter-box p {
-      line-height: 30px !important;
+      line-height: 23px !important;
       margin: 0 !important;
-      padding: 0 !important;
-      font-size: 16px;
+      padding: 19px 0 0 0 !important;
+      font-size: 13px;
       letter-spacing: 0px;
       font-family: "Poppins", sans-serif;
+      height: auto;
     }
 
     .timer-display {
@@ -310,7 +311,7 @@
   <div class="container">
 
     <div class="card">
-      <h1>For My Khushi ❤️</h1>
+      <h1>For My LOVE ❤️</h1>
       <p>You are my favorite person, my peace, my smile, and the prettiest part of my life ✨</p>
       <!-- Replace this image path with your uploaded image -->
       <img src="myimg2.jpg" alt="Us" class="hero-img" />
@@ -339,7 +340,7 @@
 
     <div class="card game-box">
       <h2>Mini Love Game 💘</h2>
-      <p>Find the special heart made just for Khiluu 💖</p>
+      <p>Find the special heart made just for Khushi 💖</p>
       <div class="hearts-game" id="gameBoard"></div>
       <div id="gameMessage"></div>
     </div>
@@ -466,15 +467,15 @@
     // Love Letter Generator
     const loveLetters = [
       "My Dearest Khushi,\n\nEvery day with you feels like a dream. You are my sunshine, my laughter, and my reason to smile. I love you more than words can express. You make life beautiful just by being in it.\n\nForever yours,\nYour Love ❤️",
-      "To My Beautiful Khushi,\n\nYou are the most amazing person I know. Your kindness, yo30px; margin: 0smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
-      "My Sweet Khushi,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every kiss, every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
+      "To My Beautiful Khushi,\n\nYou are the most amazing person I know. Your kindness, your beautiful smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
+      "My Sweet Khushi,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
       "Dearest Khushi,\n\nYou are my favorite person in this whole world. The way you love me, the way you care, the way you just exist makes me want to be a better person. Thank you for being my everything.\n\nLove you forever,\nYour Heart 💖"
     ];
 
     function generateLetter() {
       const letterBox = document.getElementById("letterBox");
       const letter = loveLetters[Math.floor(Math.random() * loveLetters.length)];
-      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #704214; line-height: 30px; margin: 0;' id='typingLetter'></p>`;
+      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #704214; line-height: 23px; margin: 0;' id='typingLetter'></p>`;
       typeLetterEffect(letter);
       createConfetti();
     }
@@ -594,9 +595,11 @@
       for (let i = 0; i < 30; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
-        confetti.style.left = Math.random() * window.innerWidth + "px";704214
+        confetti.style.left = Math.random() * window.innerWidth + "px";
         confetti.style.top = "-10px";
-        confetti.style.background = ["#d4a574", "#c9a972", "#a0826d", "#8b6f47"][Math.floor(Math.random() * 4)];
+        confetti.textContent = "❤";
+        confetti.style.fontSize = "24px";
+        confetti.style.background = "none";
         confetti.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 4000);
