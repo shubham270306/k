@@ -13,10 +13,10 @@
     }
 
     body {
-      background: linear-gradient(135deg, #ffd6e8 0%, #fff0f6 50%, #ffe0ec 100%);
+      background: linear-gradient(135deg, #f5e6d3 0%, #faf8f3 50%, #f0e4d4 100%);
       min-height: 100vh;
       overflow-x: hidden;
-      color: #ff3b7a;
+      color: #8b6f47;
       text-align: center;
       position: relative;
     }
@@ -40,9 +40,9 @@
       background: rgba(255,255,255,0.88);
       border-radius: 25px;
       padding: 30px;
-      box-shadow: 0 10px 35px rgba(255, 105, 180, 0.25);
+      box-shadow: 0 10px 35px rgba(139, 111, 71, 0.15);
       margin-bottom: 25px;
-      border: 2px solid rgba(255, 105, 180, 0.15);
+      border: 2px solid rgba(212, 165, 116, 0.2);
       animation: slideIn 0.6s ease-out;
     }
 
@@ -60,7 +60,7 @@
     h1 {
       font-size: 2.8rem;
       margin-bottom: 10px;
-      background: linear-gradient(135deg, #ff3b7a, #ff69b4);
+      background: linear-gradient(135deg, #8b6f47, #d4a574);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -75,12 +75,12 @@
 
     h2 {
       margin-bottom: 15px;
-      color: #d63384;
+      color: #8b6f47;
       font-size: 1.5rem;
     }
 
     p {
-      color: #c2185b;
+      color: #704214;
       line-height: 1.7;
     }
 
@@ -102,7 +102,7 @@
     }
 
     .btn {
-      background: linear-gradient(135deg, #ff4d88, #ff69b4);
+      background: linear-gradient(135deg, #d4a574, #c9a972);
       color: white;
       border: none;
       padding: 14px 24px;
@@ -111,26 +111,26 @@
       font-size: 1rem;
       margin: 10px;
       transition: 0.3s;
-      box-shadow: 0 5px 15px rgba(255, 77, 136, 0.3);
+      box-shadow: 0 5px 15px rgba(212, 165, 116, 0.3);
       font-weight: 600;
     }
 
     .btn:hover {
-      background: linear-gradient(135deg, #e63973, #ff1493);
+      background: linear-gradient(135deg, #c29563, #a0826d);
       transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(255, 77, 136, 0.5);
+      box-shadow: 0 8px 20px rgba(192, 135, 90, 0.5);
     }
 
     .btn:active {
       transform: scale(0.95);
     }
 
-    #message, #foreverAnswer, #gameMessage, #letterMessage, #quizMessage, #memoryMessage {
+    #message, #foreverAnswer, #gameMessage, #letterMessage, #quizMessage {
       margin-top: 15px;
       font-size: 1.15rem;
       font-weight: bold;
       min-height: 40px;
-      color: #c2185b;
+      color: #704214;
       animation: fadeIn 0.5s ease;
     }
 
@@ -191,20 +191,20 @@
       border-radius: 20px;
       font-size: 2rem;
       cursor: pointer;
-      background: linear-gradient(135deg, #fff, #ffe0ec);
-      box-shadow: 0 5px 15px rgba(255,105,180,0.25);
+      background: linear-gradient(135deg, #fff, #f0e4d4);
+      box-shadow: 0 5px 15px rgba(212, 165, 116, 0.2);
       transition: 0.25s;
       font-weight: bold;
     }
 
     .heart-btn:hover {
       transform: scale(1.12);
-      box-shadow: 0 8px 20px rgba(255,105,180,0.4);
+      box-shadow: 0 8px 20px rgba(212, 165, 116, 0.4);
     }
 
     .heart {
       position: fixed;
-      color: rgba(255, 77, 136, 0.45);
+      color: rgba(212, 165, 116, 0.45);
       animation: float 7s linear infinite;
       z-index: -2;
     }
@@ -220,35 +220,7 @@
       }
     }
 
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 80px);
-      gap: 10px;
-      justify-content: center;
-      margin-top: 20px;
-    }
 
-    .memory-card {
-      width: 80px;
-      height: 80px;
-      border: none;
-      border-radius: 15px;
-      background: linear-gradient(135deg, #ff69b4, #ff4d88);
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 5px 15px rgba(255,105,180,0.3);
-    }
-
-    .memory-card:hover {
-      transform: scale(1.08);
-    }
-
-    .memory-card.flipped {
-      background: #fff;
-      color: #ff4d88;
-    }
 
     .quiz-options {
       display: flex;
@@ -265,32 +237,49 @@
       border: none;
       border-radius: 20px;
       background: #fff;
-      color: #ff4d88;
+      color: #8b6f47;
       cursor: pointer;
-      border: 2px solid #ff4d88;
+      border: 2px solid #d4a574;
       transition: 0.3s;
       font-weight: 600;
     }
 
     .quiz-btn:hover {
-      background: #ff4d88;
+      background: #d4a574;
       color: white;
       transform: scale(1.05);
     }
 
     .letter-box {
-      background: linear-gradient(135deg, #fff5f7, #fff);
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 22px,
+          #d4a574 22px,
+          #d4a574 23px
+        );
+      background-position: 0 0;
       border-radius: 15px;
-      padding: 20px;
+      padding: 22px 20px 20px 30px;
       margin-top: 15px;
-      min-height: 150px;
-      border: 2px dashed #ff69b4;
+      min-height: 200px;
+      border: 2px solid #d4a574;
+    }
+
+    .letter-box p {
+      line-height: 30px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 16px;
+      letter-spacing: 0px;
+      font-family: "Poppins", sans-serif;
     }
 
     .timer-display {
       font-size: 2rem;
       font-weight: bold;
-      color: #ff4d88;
+      color: #8b6f47;
       margin: 15px 0;
     }
 
@@ -298,7 +287,7 @@
       position: fixed;
       width: 10px;
       height: 10px;
-      background: #ff4d88;
+      background: #d4a574;
       pointer-events: none;
       z-index: 999;
     }
@@ -333,8 +322,8 @@
       <h2>Our Romantic Song 🎶</h2>
       <p>Play this while reading, my love 💕</p>
       <!-- Replace with your favorite romantic mp3 -->
-      <audio controls autoplay loop>
-        <source src="Mane Tu Mali Gai - Official Audio  Jigardan Gadhavi - Jigrra.mp3" type="audio/mpeg" start="53">
+      <audio controls loop id="audioPlayer">
+        <source src="Mane Tu Mali Gai - Official Audio  Jigardan Gadhavi - Jigrra.mp3" type="audio/mpeg">
       </audio>
     </div>
 
@@ -361,14 +350,6 @@
       <button class="btn" onclick="generateLetter()">Generate Letter for You ✍️</button>
       <div class="letter-box" id="letterBox"></div>
       <div id="letterMessage"></div>
-    </div>
-
-    <div class="card game-box">
-      <h2>Memory Matching Game 🎮</h2>
-      <p>Match the hearts and find the hidden memories ❤️</p>
-      <button class="btn" onclick="startMemoryGame()">Start Game</button>
-      <div class="memory-grid" id="memoryGrid"></div>
-      <div id="memoryMessage"></div>
     </div>
 
     <div class="card game-box">
@@ -432,6 +413,18 @@
       heart.innerHTML = "❤";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    // Auto-play music with slight delay to prevent page refresh issues
+    window.addEventListener('load', function() {
+      const audioPlayer = document.getElementById('audioPlayer');
+      if (audioPlayer) {
+        setTimeout(function() {
+          audioPlayer.play().catch(function(error) {
+            console.log('Autoplay prevented by browser. User can click play button.');
+          });
+        }, 1000);
+      }
+    });
+
       heart.style.animationDuration = Math.random() * 3 + 4 + "s";
       document.body.appendChild(heart);
 
@@ -473,7 +466,7 @@
     // Love Letter Generator
     const loveLetters = [
       "My Dearest Khushi,\n\nEvery day with you feels like a dream. You are my sunshine, my laughter, and my reason to smile. I love you more than words can express. You make life beautiful just by being in it.\n\nForever yours,\nYour Love ❤️",
-      "To My Beautiful Khushi,\n\nYou are the most amazing person I know. Your kindness, your smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
+      "To My Beautiful Khushi,\n\nYou are the most amazing person I know. Your kindness, yo30px; margin: 0smile, your whole being makes my heart skip a beat. I'm so grateful for every moment we share together. You are my everything.\n\nWith all my love,\nYour Forever Love 💕",
       "My Sweet Khushi,\n\nI never knew what true love was until I met you. You changed my life in the most beautiful way. Every kiss, every hug, every word from you means the world to me. I love you infinitely.\n\nAlways yours,\nYour Soulmate ✨",
       "Dearest Khushi,\n\nYou are my favorite person in this whole world. The way you love me, the way you care, the way you just exist makes me want to be a better person. Thank you for being my everything.\n\nLove you forever,\nYour Heart 💖"
     ];
@@ -481,7 +474,7 @@
     function generateLetter() {
       const letterBox = document.getElementById("letterBox");
       const letter = loveLetters[Math.floor(Math.random() * loveLetters.length)];
-      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #c2185b; line-height: 1.8;' id='typingLetter'></p>`;
+      letterBox.innerHTML = `<p style='white-space: pre-wrap; color: #704214; line-height: 30px; margin: 0;' id='typingLetter'></p>`;
       typeLetterEffect(letter);
       createConfetti();
     }
@@ -506,68 +499,8 @@
       type();
     }
 
-    // Memory Matching Game
-    const memoryPairs = ["❤️", "💕", "💖", "💗", "💘", "💝"];
-    let memoryCards = [];
-    let flipped = [];
-    let matched = 0;
+    // Memory Matching Game - REMOVED
 
-    function startMemoryGame() {
-      memoryCards = [];
-      flipped = [];
-      matched = 0;
-      const memoryGrid = document.getElementById("memoryGrid");
-      memoryGrid.innerHTML = "";
-      document.getElementById("memoryMessage").innerText = "";
-
-      // Create pairs
-      const gameCards = [...memoryPairs, ...memoryPairs];
-      for (let i = gameCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
-      }
-
-      gameCards.forEach((symbol, index) => {
-        const card = document.createElement("button");
-        card.className = "memory-card";
-        card.dataset.symbol = symbol;
-        card.dataset.index = index;
-        card.innerHTML = "?";
-        card.onclick = () => flipMemoryCard(card);
-        memoryCards.push(card);
-        memoryGrid.appendChild(card);
-      });
-    }
-
-    function flipMemoryCard(card) {
-      if (flipped.length < 2 && !card.classList.contains("flipped")) {
-        card.classList.add("flipped");
-        card.innerHTML = card.dataset.symbol;
-        flipped.push(card);
-
-        if (flipped.length === 2) {
-          setTimeout(() => checkMemoryMatch(), 500);
-        }
-      }
-    }
-
-    function checkMemoryMatch() {
-      const [card1, card2] = flipped;
-      if (card1.dataset.symbol === card2.dataset.symbol) {
-        matched++;
-        flipped = [];
-        if (matched === memoryPairs.length) {
-          document.getElementById("memoryMessage").innerText = "You matched all hearts! You know my love perfectly! 💕✨";
-          createConfetti();
-        }
-      } else {
-        card1.classList.remove("flipped");
-        card2.classList.remove("flipped");
-        card1.innerHTML = "?";
-        card2.innerHTML = "?";
-        flipped = [];
-      }
-    }
 
     // Love Quiz
     const quizQuestions = [
@@ -601,7 +534,7 @@
       const container = document.getElementById("quizContainer");
       if (currentQuestion < quizQuestions.length) {
         const q = quizQuestions[currentQuestion];
-        let html = `<p style='font-size: 1.1rem; margin: 15px 0; color: #c2185b;'>${q.question}</p><div class='quiz-options'>`;
+        let html = `<p style='font-size: 1.1rem; margin: 15px 0; color: #704214;'>${q.question}</p><div class='quiz-options'>`;
         q.options.forEach((option, index) => {
           html += `<button class='quiz-btn' onclick='answerQuiz(${index}, ${q.correct})'>${option}</button>`;
         });
@@ -661,9 +594,9 @@
       for (let i = 0; i < 30; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
-        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.left = Math.random() * window.innerWidth + "px";704214
         confetti.style.top = "-10px";
-        confetti.style.background = ["#ff4d88", "#ff69b4", "#ff1493", "#c2185b"][Math.floor(Math.random() * 4)];
+        confetti.style.background = ["#d4a574", "#c9a972", "#a0826d", "#8b6f47"][Math.floor(Math.random() * 4)];
         confetti.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 4000);
