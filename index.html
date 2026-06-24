@@ -13,21 +13,12 @@
     }
 
     body {
-      background: linear-gradient(135deg, #f5e6d3 0%, #faf8f3 50%, #f0e4d4 100%);
+      background: #000000;
       min-height: 100vh;
       overflow-x: hidden;
       color: #8b6f47;
       text-align: center;
       position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      z-index: -1;
     }
 
     .container {
@@ -293,6 +284,76 @@
       z-index: 999;
     }
 
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 450px;
+      margin: 20px auto;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      background: #f0e4d4;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: leftSwipe 0.8s ease-in-out;
+    }
+
+    @keyframes leftSwipe {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: 0.3s;
+      border: 2px solid white;
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
     @media (max-width: 768px) {
       h1 { font-size: 2.2rem; }
       .hearts-game {
@@ -303,6 +364,10 @@
       }
       #yesBtn { left: 18%; }
       #noBtn { left: 58%; }
+      .carousel-container {
+        max-width: 350px;
+        height: 400px;
+      }
     }
   </style>
 </head>
@@ -314,7 +379,7 @@
       <h1>For My LOVE ❤️</h1>
       <p>You are my favorite person, my peace, my smile, and the prettiest part of my life ✨</p>
       <!-- Replace this image path with your uploaded image -->
-      <img src="myimg2.jpg" alt="Us" class="hero-img" />
+      <img src="mainimg.jpeg" alt="Us" class="hero-img" />
       <button class="btn" onclick="showLove()">Why I Love You 💖</button>
       <div id="message"></div>
     </div>
@@ -324,12 +389,12 @@
       <p>Play this while reading, my love 💕</p>
       <!-- Replace with your favorite romantic mp3 -->
       <audio controls loop id="audioPlayer">
-        <source src="Mane Tu Mali Gai - Official Audio  Jigardan Gadhavi - Jigrra.mp3" type="audio/mpeg">
+        <source src="song2.mp3" type="audio/mpeg">
       </audio>
     </div>
 
     <div class="card">
-      <h2>Will You Stay Forever? 🥺❤️</h2>
+      <h2>Will You Marry Me? 🥺❤️</h2>
       <p>Choose carefully, baby 😚</p>
       <div class="love-buttons">
         <button class="btn" id="yesBtn" onclick="yesForever()">Yes 💍</button>
@@ -362,6 +427,15 @@
     </div>
 
     <div class="card game-box">
+      <h2>Our Beautiful Memories 📸✨</h2>
+      <p>Watch our precious moments together...</p>
+      <div class="carousel-container">
+        <div class="carousel-wrapper" id="carouselWrapper"></div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+
+    <div class="card game-box">
       <h2>Wedding Day Counter 💍⏳</h2>
       <p>Our special day is coming...</p>
       <button class="btn" onclick="startCountdown()">See the Countdown 📅</button>
@@ -386,6 +460,13 @@
       const msg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
       document.getElementById("message").innerText = msg;
       createConfetti();
+      // Play the song
+      const audioPlayer = document.getElementById('audioPlayer');
+      if (audioPlayer) {
+        audioPlayer.play().catch(function(error) {
+          console.log('Autoplay prevented by browser.');
+        });
+      }
     }
 
     function yesForever() {
@@ -414,18 +495,6 @@
       heart.innerHTML = "❤";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    // Auto-play music with slight delay to prevent page refresh issues
-    window.addEventListener('load', function() {
-      const audioPlayer = document.getElementById('audioPlayer');
-      if (audioPlayer) {
-        setTimeout(function() {
-          audioPlayer.play().catch(function(error) {
-            console.log('Autoplay prevented by browser. User can click play button.');
-          });
-        }, 1000);
-      }
-    });
-
       heart.style.animationDuration = Math.random() * 3 + 4 + "s";
       document.body.appendChild(heart);
 
@@ -571,10 +640,81 @@
       createConfetti();
     }
 
+    // Image Carousel
+    const carouselImages = [
+      'image1.jpeg',
+      'image2.jpeg',
+      'image3.jpeg',
+      'image4.jpeg',
+      'image5.jpeg',
+      'image6.jpeg',
+    ];
+
+    let currentSlide = 0;
+    let carouselInterval;
+
+    function initCarousel() {
+      const wrapper = document.getElementById('carouselWrapper');
+      const dots = document.getElementById('carouselDots');
+      
+      // Create slides
+      wrapper.innerHTML = '';
+      carouselImages.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `<img src="${img}" alt="Memory ${index + 1}" onload="this.style.width='100%'; this.style.height='100%';" onerror="this.parentElement.style.background='#e8d4c0'; this.parentElement.innerText='Image ${index + 1} - Add path later';" />`;
+        wrapper.appendChild(slide);
+      });
+
+      // Create dots
+      dots.innerHTML = '';
+      carouselImages.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (index === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(index);
+        dots.appendChild(dot);
+      });
+
+      startCarouselAnimation();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+      clearInterval(carouselInterval);
+      startCarouselAnimation();
+    }
+
+    function updateCarousel() {
+      const wrapper = document.getElementById('carouselWrapper');
+      wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+      wrapper.style.transition = 'transform 0.8s ease-in-out';
+
+      // Update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % carouselImages.length;
+      updateCarousel();
+    }
+
+    function startCarouselAnimation() {
+      carouselInterval = setInterval(nextSlide, 4000); // Change image every 4 seconds
+    }
+
+    // Initialize carousel when page loads
+    window.addEventListener('load', () => {
+      setTimeout(initCarousel, 500);
+    });
+
     // Wedding Day Counter
     function startCountdown() {
-      const weddingDate = new Date('2026-12-09T00:00:00+05:30');
-      const startDate = new Date('2026-07-05T00:00:00+05:30');
+      const weddingDate = new Date('2026-12-10T00:00:00+05:30');
+      const startDate = new Date('2026-05-15T00:00:00+05:30');
       const today = new Date();
       
       const daysLeft = Math.ceil((weddingDate - today) / (1000 * 60 * 60 * 24));
